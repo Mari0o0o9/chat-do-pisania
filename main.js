@@ -3,7 +3,7 @@ function sendMessage() {
     var text = document.getElementById('text')
     var chat = document.getElementById('chat')
     
-   send.addEventListener('click', ()=> {
+    send.addEventListener('click', ()=> {
         if (text.value == ''){ 
             return 0
         }
@@ -14,6 +14,11 @@ function sendMessage() {
             chat.appendChild(message)
             text.value = ''
         }
-   })
+    })
+    document.addEventListener('keydown', event => {
+        if (event.key == 'Enter') {
+            send.click()
+        }
+    })
 }
 sendMessage()
