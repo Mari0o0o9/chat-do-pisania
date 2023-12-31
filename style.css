@@ -44,7 +44,7 @@ section {
     margin-right: 10px;
 }
 
-#write {
+#text {
     background-color: #f3838e;
     width: 90%;
     border: none;
@@ -54,10 +54,10 @@ section {
     text-align: right;
     font-size: large;
 }
-#write:focus {
+#text:focus {
     box-shadow: 8px 8px 24px 0px rgba(6, 6, 6, 1);
 }
-#write::placeholder {
+#text::placeholder {
     color: white;
     margin-right: 10px;
 }
