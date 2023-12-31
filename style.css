@@ -1,0 +1,99 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Rockwell Extra Bold,Rockwell Bold,monospace; 
+    background-color: #803c5a;
+}
+header {
+    background-color: #592c47;
+    width: 100%;
+    height: 9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: xx-large;
+}
+section {
+    background-color: #803c5a;
+    width: 100%;
+    height: 80vh;
+    overflow: auto;
+}
+
+.message {
+    background-color: #f3838e;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    clear: both;
+    display: inline-block;
+    max-width: 45%;
+    word-wrap: break-word;
+}
+.other-message {
+    text-align: left;
+    float: left;
+    margin-left: 10px;
+}
+.my-message {
+    text-align: right;
+    float: right;
+    margin-right: 10px;
+}
+
+#write {
+    background-color: #f3838e;
+    width: 90%;
+    border: none;
+    border-radius: 10px;
+    height: 30px;
+    margin-top: 15px;
+    text-align: right;
+    font-size: large;
+}
+#write:focus {
+    box-shadow: 8px 8px 24px 0px rgba(6, 6, 6, 1);
+}
+#write::placeholder {
+    color: white;
+    margin-right: 10px;
+}
+#send {
+    background: transparent;
+    font-size: 16px;
+    margin-top: 15px;
+    margin-left: 10px;
+    padding: 7px;
+    font-size: 30px;
+    color: white;
+
+    border: none;
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+#send:active {
+    color: #f3838e;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #592c47;
+    width: 100%;
+    height: 11vh;
+}
+
+
+
+
+/* kolory strony */
+.color1 {color: #592c47;}
+.color2 {color: #803c5a;}
+.color3 {color: #b35973;}
+.color4 {color: #f3838e;}
+.color5 {color: #f6b6a2;}
