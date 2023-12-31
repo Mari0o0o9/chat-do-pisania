@@ -1,0 +1,14 @@
+main {
+    margin: auto;
+    width: 50vh;
+    margin-top: 40vh;
+}
+p {
+    font-size: 1.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label {
+    margin-right: 10px;
+}
