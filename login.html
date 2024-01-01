@@ -9,29 +9,31 @@
 </head>
 <body>
     <main>
-        <h1>Logowanie:</h1>
-        <p>
-            <label for="email" class="material-symbols-outlined">
-                alternate_email
-            </label>
-            <input type="email" id="email" placeholder="Podaj Email..."> 
-        </p>
-        <p>
-            <label for="pass1" class="material-symbols-outlined">
-                password
-            </label>
-            <input type="password" id="pass1" placeholder="Podaj Hasło...">
-        </p>
-        <p>
-            <label for="pass2" class="material-symbols-outlined">
-                password
-            </label>
-            <input type="password" id="pass2" placeholder="Powtórz Hasło..."> 
-        </p>
-        <p>
-            <input type="submit" value="Logowanie">
-            <input type="submit" value="Rejestracja">
-        </p>
+        <form id="myForm">
+            <h1>Logowanie:</h1>
+            <p>
+                <label for="email" class="material-symbols-outlined">
+                    alternate_email
+                </label>
+                <input type="email" id="email" placeholder="Podaj Email..." required> 
+            </p>
+            <p>
+                <label for="pass1" class="material-symbols-outlined">
+                    password
+                </label>
+                <input type="password" id="pass1" placeholder="Podaj Hasło..." required>
+            </p>
+            <p>
+                <label for="pass2" class="material-symbols-outlined">
+                    password
+                </label>
+                <input type="password" id="pass2" placeholder="Powtórz Hasło..." required> 
+            </p>
+            <p id="login">
+                <input type="submit" value="Logowanie">
+                <input type="submit" value="Rejestracja">
+            </p>
+        </form>
     </main>
 </body>
 </html>

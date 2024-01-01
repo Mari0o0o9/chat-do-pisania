@@ -8,7 +8,6 @@ h1 {
 }
 main {
     border-radius: 10px;
-    height: 30vh;
     margin: auto;
     padding: 10px;
     width: 50vh;
@@ -26,9 +25,36 @@ label {
     color: white;
 }
 input {
+    font-weight: bold;
+    font-size: 1em;
+    font-family: Rockwell Extra Bold,Rockwell Bold,monospace;
     height: 25px;
     border-radius: 10px;
     border: none;
     background-color: #f3838e;
     padding: 5px;
+}
+input::placeholder {
+    color: white;
+    font-style: italic;
+}
+#login {
+    display: flex;
+    flex-direction: column;
+}
+input[type = 'submit'] {
+    cursor: pointer;
+    padding: 8px;
+    color: white;
+    text-align: center;
+    height: fit-content;
+    font-size: 1.2em;
+    font-family: Rockwell Extra Bold,Rockwell Bold,monospace;
+    margin: 5px;
+    font-weight: bolder;
+    transition: 0.8s;
+}
+input[type = 'submit']:hover {
+    color: black;
+    transform: scale(1.2);
 }
