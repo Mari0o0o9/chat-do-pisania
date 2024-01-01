@@ -1,7 +1,19 @@
+body {
+    background-color: #592c47;
+    font-family: Rockwell Extra Bold,Rockwell Bold,monospace; 
+}
+h1 {
+    color: white;
+    text-align: center;
+}
 main {
+    border-radius: 10px;
+    height: 30vh;
     margin: auto;
+    padding: 10px;
     width: 50vh;
-    margin-top: 40vh;
+    margin-top: 25vh;
+    background-color: #803c5a;
 }
 p {
     font-size: 1.2em;
@@ -11,4 +23,12 @@ p {
 }
 label {
     margin-right: 10px;
+    color: white;
+}
+input {
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+    background-color: #f3838e;
+    padding: 5px;
 }
