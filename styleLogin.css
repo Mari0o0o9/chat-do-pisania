@@ -5,14 +5,32 @@ body {
 h1 {
     color: white;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-#login {
+button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: white;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+
+#login, #register {
+    position: relative;
     border-radius: 10px;
     margin: auto;
     padding: 10px;
     width: 50vh;
     margin-top: 25vh;
     background-color: #803c5a;
+}
+#login {
+    display: none;
 }
 p {
     font-size: 1.2em;
@@ -34,6 +52,9 @@ input {
     background-color: #f3838e;
     padding: 5px;
 }
+input:focus {
+    box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
+}
 input::placeholder {
     color: white;
     font-style: italic;
@@ -52,5 +73,9 @@ input[type = 'submit'] {
 }
 input[type = 'submit']:hover {
     color: black;
+    box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
     transform: scale(1.2);
+}
+input[type = 'submit']:active {
+    box-shadow: inset 8px 8px 24px 0px rgba(0, 0, 0, 1);
 }
