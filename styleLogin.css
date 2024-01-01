@@ -6,7 +6,7 @@ h1 {
     color: white;
     text-align: center;
 }
-main {
+#login {
     border-radius: 10px;
     margin: auto;
     padding: 10px;
@@ -37,10 +37,6 @@ input {
 input::placeholder {
     color: white;
     font-style: italic;
-}
-#login {
-    display: flex;
-    flex-direction: column;
 }
 input[type = 'submit'] {
     cursor: pointer;
