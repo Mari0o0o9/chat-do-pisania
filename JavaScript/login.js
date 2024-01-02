@@ -1,3 +1,5 @@
+
+
 function swap() {
     var swap1 = document.getElementById('switch1')
     var swap2 = document.getElementById('switch2')
@@ -14,3 +16,20 @@ function swap() {
     })
 }
 swap()
+
+function login() {
+    var login = document.getElementById('emailLog').value
+    var pass1 = document.getElementById('passLog').value
+}
+
+function register() {
+    var name = document.getElementById('name').value
+    var email = document.getElementById('email').value
+    var pass = document.getElementById('pass1').value
+    var passConfirm = docum.getElementById('pass2').value
+
+    if (pass !== passConfirm) {
+        alert('Hasła nie są takie same')
+        return
+    }
+}
