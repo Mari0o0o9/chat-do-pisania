@@ -10,8 +10,8 @@
 <body>
     <div id="login">
         <h1>Logowanie:</h1>
-        <button class="material-symbols-outlined" id="switch1">
-            keyboard_double_arrow_left
+        <button id="switch1">
+            Rejestracja
         </button>
         <form id="myFormLogin"> 
             <p>
@@ -33,8 +33,8 @@
     </div>
     <div id="register">
         <h1>Rejestracja:</h1>
-        <button class="material-symbols-outlined" id="switch2">
-            login
+        <button id="switch2">
+            Logowanie
         </button> 
         <form id="myFormRegister">
             <p>

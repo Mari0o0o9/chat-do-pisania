@@ -4,7 +4,7 @@ function sendMessage() {
     var chat = document.getElementById('chat')
     
     send.addEventListener('click', ()=> {
-        if (text.value == ''){ 
+        if (text.value == '') { 
             return 0
         }
         else {

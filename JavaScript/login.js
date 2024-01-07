@@ -33,3 +33,4 @@ function register() {
         return
     }
 }
+register()
