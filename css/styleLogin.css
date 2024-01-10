@@ -31,9 +31,6 @@ button {
     background-color: #803c5a;
     box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
 }
-#login {
-    display: none;
-}
 p {
     font-size: 1.2em;
     display: flex;
@@ -80,4 +77,13 @@ input[type = 'submit']:hover {
 }
 input[type = 'submit']:active {
     box-shadow: inset 8px 8px 24px 0px rgba(0, 0, 0, 1);
+}
+#switch1, #switch2 {
+    font-weight: bolder;
+}
+
+.wynik {
+    color: white;
+    font-weight: bold;
+    font-style: italic;
 }
