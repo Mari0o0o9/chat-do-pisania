@@ -43,6 +43,7 @@
 
                 $conn -> query($sql);
                 echo 'Zarejestrowano pomyślnie!!!';
+                header("refresh:3;url=chat.php");
             } else {
                 echo "Podany Login już istnieje!!!";
             }

@@ -23,6 +23,7 @@
 
             if (($row = $result -> fetch_assoc()) && password_verify($pass, $row['password'])) {
                 echo "Zalogowano pomyślnie!!!";
+                header("refresh:3;url=chat.php");
             }
             else {
                 echo "Niepoprawny Login lub Hasło!!!";
