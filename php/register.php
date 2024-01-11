@@ -1,10 +1,8 @@
 <?php 
     $conn = new mysqli("localhost", "root", "", "mydb");
-    if ($conn->connect_error) {
+    if ($conn -> connect_error) {
         die("Błąd połączenia z bazą danych: " . $conn->connect_error);
     }
-
-    global $conn;
 
     function myFormRegister() {
     global $conn;
@@ -18,10 +16,9 @@
         $pass1 = $_POST['pass1Reg'];
         $pass2 = $_POST['pass2Reg'];
 
-        $login_check = $login;
         $query = "SELECT * 
                 FROM users 
-                WHERE login = '$login_check'";
+                WHERE login = '$login'";
         $result = $conn -> query($query);
 
         if ($result -> num_rows > 0) {
@@ -33,7 +30,7 @@
         else {
             $hashed_password = password_hash($pass2, PASSWORD_DEFAULT);
 
-            $check_query = "SELECT * FROM users WHERE login = '$login_check'";
+            $check_query = "SELECT * FROM users WHERE login = '$login'";
             $check_result = $conn -> query($check_query);
 
             if ($check_result -> num_rows == 0) {
@@ -43,7 +40,7 @@
 
                 $conn -> query($sql);
                 echo 'Zarejestrowano pomyślnie!!!';
-                header("refresh:3;url=chat.php");
+                header("refresh:2;url=chat.php");
             } else {
                 echo "Podany Login już istnieje!!!";
             }
@@ -102,3 +99,6 @@
     </div>
 </body>
 </html>
+<?php
+$conn -> close(); 
+?>

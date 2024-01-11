@@ -1,10 +1,9 @@
 <?php 
+    session_start();
     $conn = new mysqli("localhost", "root", "", "mydb");
-    if ($conn->connect_error) {
+    if ($conn -> connect_error) {
         die("Błąd połączenia z bazą danych: " . $conn->connect_error);
     }
-
-    global $conn;
 
     function myFormLogin() {
         global $conn;
@@ -23,7 +22,7 @@
 
             if (($row = $result -> fetch_assoc()) && password_verify($pass, $row['password'])) {
                 echo "Zalogowano pomyślnie!!!";
-                header("refresh:3;url=chat.php");
+                header("refresh:2;url=chat.php");
             }
             else {
                 echo "Niepoprawny Login lub Hasło!!!";
@@ -67,9 +66,13 @@
             </p>
         </form>
         <p class="wynik"><?= myFormLogin()?></p>
+        <a href="./reset.php">
+            <input type="button" value="Nie pamientam hasła" class="changePassword">
+        </a>
     </div>
 </body>
 </html>
 <?php 
-$conn -> close()
+$conn -> close();
+session_destroy();
 ?>
