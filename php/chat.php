@@ -22,7 +22,7 @@
     </header>
     <section id="chat">
         <div class="message other-message">   
-            dupa2    
+            wqewqewquegqwe   
         </div>
         <div class="message my-message">
             sajkdsksadsadasdasdasasadasdsdasda
