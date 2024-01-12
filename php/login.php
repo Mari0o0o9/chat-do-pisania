@@ -15,6 +15,8 @@
             $login = $_POST['loginName'];
             $pass = $_POST['passLogin'];
 
+            $_SESSION['login'] = $login;
+
             $sql = "SELECT * 
                     FROM users
                     WHERE login = '$login'";

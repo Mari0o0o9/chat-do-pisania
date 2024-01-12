@@ -1,7 +1,8 @@
-<?php 
+<?php
+    session_start();
     $conn = new mysqli("localhost", "root", "", "mydb");
     if ($conn -> connect_error) {
-        die("Błąd połączenia z bazą danych: " . $conn->connect_error);
+        die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
     }
 
     function myFormRegister() {
@@ -15,6 +16,8 @@
         $email = $_POST['emailReg'];
         $pass1 = $_POST['pass1Reg'];
         $pass2 = $_POST['pass2Reg'];
+
+        $_SESSION['login'] = $login;
 
         $query = "SELECT * 
                 FROM users 
@@ -100,5 +103,6 @@
 </body>
 </html>
 <?php
-$conn -> close(); 
+$conn -> close();
+session_destroy(); 
 ?>

@@ -2,7 +2,7 @@
     session_start();
     $conn = new mysqli("localhost", "root", "", "mydb");
     if ($conn -> connect_error) {
-        die("Błąd połączenia z bazą danych: " . $conn->connect_error);
+        die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
     }
 
     function changePassword() {
