@@ -66,16 +66,22 @@
                 <input type="text" id="loginName" placeholder="Podaj Login..." required name="login">
             </p>
             <p>
-                <label for="pass1" class="material-symbols-outlined">
+                <label for="pass1" class="material-symbols-outlined passVis">
                     password
                 </label>
-                <input type="password" id="pass1" placeholder="Podaj Hasło..." minlength="12" required name="pass1">
+                <input type="password" id="pass1" placeholder="Podaj Hasło..." minlength="12" required name="pass1" class="pass">
+                <span class="material-symbols-outlined visPass">
+                    visibility_off
+                </span>
             </p>
             <p>
-                <label for="pass2" class="material-symbols-outlined">
+                <label for="pass2" class="material-symbols-outlined passVis">
                     password
                 </label>
-                <input type="password" id="pass2" placeholder="Powtórz Hasło..." minlength="12" required name="pass2"> 
+                <input type="password" id="pass2" placeholder="Powtórz Hasło..." minlength="12" required name="pass2" class="pass">
+                <span class="material-symbols-outlined visPass">
+                    visibility_off
+                </span>
             </p>
             <p>
                 <input type="submit" value="Zmień Hasło">
@@ -84,8 +90,9 @@
         <p class="wynik"><?=changePassword();?></p>
     </div>
 </body>
+<script src="../JavaScript/password.js"></script>
 </html>
 <?php
 $conn -> close();
-session_destroy(); 
+ 
 ?>

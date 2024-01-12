@@ -58,10 +58,13 @@
                 <input type="text" id="loginName" placeholder="Podaj Login..." required name="loginName"> 
             </p>
             <p>
-                <label for="passLog" class="material-symbols-outlined">
+                <label for="passLog" class="material-symbols-outlined passVis">
                     password
                 </label>
-                <input type="password" id="passLog" placeholder="Podaj Hasło..." required name="passLogin">
+                <input type="password" id="passLog" placeholder="Podaj Hasło..." required name="passLogin" class="pass"> 
+                <span class="material-symbols-outlined visPass">
+                    visibility_off
+                </span>
             </p>
             <p>
                 <input type="submit" value="Logowanie">
@@ -73,8 +76,8 @@
         </a>
     </div>
 </body>
+<script src="../JavaScript/password.js"></script>
 </html>
 <?php 
 $conn -> close();
-session_destroy();
 ?>

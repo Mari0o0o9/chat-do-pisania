@@ -102,3 +102,15 @@ input[type = 'submit']:active {
     font-weight: bold;
     font-style: italic;
 }
+
+.visPass {
+    position: relative;
+    cursor: pointer;
+    right: 25px;
+    top: 2px;
+    color: white;
+}
+.pass, .passVis {
+    position: relative;
+    left: 12px;
+}

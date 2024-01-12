@@ -5,6 +5,7 @@
         die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
     }
 
+    $login = $_SESSION['login'];
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -39,3 +40,6 @@
 </body>
 <script src="../JavaScript/chat.js"></script>
 </html>
+<?php
+    $conn -> close(); 
+?>
