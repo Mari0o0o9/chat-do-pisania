@@ -1,0 +1,3 @@
+baze danych trzeba nazwac 'mydb'
+
+mozna testowac pierwszy mój taki projekt :D
