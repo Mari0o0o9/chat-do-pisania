@@ -129,6 +129,17 @@ li {
     font-size: 1.2rem;
     font-weight: bold;
 }
+#account {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+#account a {
+    color: white;
+}
+#account a:active {
+    color: black;
+}
 
 ::-webkit-scrollbar {
     width: 12px;

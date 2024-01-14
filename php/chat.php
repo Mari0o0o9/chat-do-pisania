@@ -36,7 +36,14 @@
 </head>
 <body>
     <nav>
-        <h2>Cześć <?=$_COOKIE['login']?>!!!</h2>
+        <div id="account">
+            <h2>Witaj, <?=$_COOKIE['login']?>!!!</h2>
+            <a href="./changeAccount.php">
+                <span class="material-symbols-outlined">
+                settings
+                </span>
+            </a>
+        </div>
         <h3>Czaty:</h3>
         <input type="text" name="" id="" placeholder="Szukaj...">
         <div id="friendList">
