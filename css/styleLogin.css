@@ -71,9 +71,10 @@ input,
 }
 #fileLabel {
     cursor: pointer;
+    transition: 0.5s;
 }
 #fileLabel:hover {
-    background-color: #803c5a;
+    background-color: #f6b6a2;
     color: black;
 }
 

@@ -12,15 +12,15 @@
     function friendList() {
         global $conn;
         $login = $_COOKIE['login'];
-
-        $sql = "SELECT friend
-                FROM friends
-                WHERE login = '$login'";
+        
+        $sql = "SELECT friend_login
+            FROM friends
+            WHERE user_login = '$login'";
 
         $result = $conn -> query($sql);
 
         while ($row = $result -> fetch_array()) {
-            echo "<li>$row[friend]</li>";
+            echo "<li>$row[friend_login]</li>";
         }
     }
 ?>

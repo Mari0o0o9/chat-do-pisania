@@ -21,6 +21,7 @@
                     FROM users
                     WHERE login = '$login'";
             $result = $conn -> query($sql);
+            
 
             if (($row = $result -> fetch_assoc()) && password_verify($pass, $row['password'])) {
                 echo "Zalogowano pomyślnie!!!";
@@ -31,6 +32,7 @@
             }
         }
     }
+    
 ?>
 <!DOCTYPE html>
 <html lang="pl">
