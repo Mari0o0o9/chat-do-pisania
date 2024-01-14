@@ -17,7 +17,7 @@
         $pass1 = $_POST['pass1Reg'];
         $pass2 = $_POST['pass2Reg'];
 
-        $_SESSION['login'] = $login;
+        setcookie("login", $login, time() + 43200, "/");
 
         $query = "SELECT * 
                 FROM users 

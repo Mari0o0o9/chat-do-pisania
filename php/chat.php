@@ -5,7 +5,24 @@
         die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
     }
 
-    $login = $_SESSION['login'];
+    if ($_COOKIE['login'] == null) {
+        header("Location: login.php");
+    }
+
+    function friendList() {
+        global $conn;
+        $login = $_COOKIE['login'];
+
+        $sql = "SELECT friend
+                FROM friends
+                WHERE login = '$login'";
+
+        $result = $conn -> query($sql);
+
+        while ($row = $result -> fetch_array()) {
+            echo "<li>$row[friend]</li>";
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -19,9 +36,14 @@
 </head>
 <body>
     <nav>
-        <h2>Cześć <?= $login?>!!!</h2>
+        <h2>Cześć <?=$_COOKIE['login']?>!!!</h2>
         <h3>Czaty:</h3>
         <input type="text" name="" id="" placeholder="Szukaj...">
+        <div id="friendList">
+            <ul>
+                <?= friendList();?>
+            </ul>
+        </div>
     </nav>
     <main>
         <header>

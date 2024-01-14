@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sty 12, 2024 at 02:51 AM
+-- Generation Time: Sty 14, 2024 at 04:13 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.1.17
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `mydb`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `friends`
+--
+
+CREATE TABLE `friends` (
+  `login_id` int(11) NOT NULL,
+  `login` text NOT NULL,
+  `friend_id` int(11) NOT NULL,
+  `friend` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `friends`
+--
+
+INSERT INTO `friends` (`login_id`, `login`, `friend_id`, `friend`) VALUES
+(1, 'Mari0', 2, 'adam');
 
 -- --------------------------------------------------------
 
@@ -47,6 +67,13 @@ INSERT INTO `users` (`user_id`, `login`, `email`, `password`) VALUES
 --
 
 --
+-- Indeksy dla tabeli `friends`
+--
+ALTER TABLE `friends`
+  ADD PRIMARY KEY (`login_id`),
+  ADD KEY `fk_firnedId` (`friend_id`);
+
+--
 -- Indeksy dla tabeli `users`
 --
 ALTER TABLE `users`
@@ -57,10 +84,27 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `friends`
+--
+ALTER TABLE `friends`
+  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `friends`
+--
+ALTER TABLE `friends`
+  ADD CONSTRAINT `fk_firnedId` FOREIGN KEY (`friend_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `fk_loginId` FOREIGN KEY (`login_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

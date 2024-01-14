@@ -15,7 +15,7 @@
             $login = $_POST['loginName'];
             $pass = $_POST['passLogin'];
 
-            $_SESSION['login'] = $login;
+            setcookie("login", $login, time() + 43200, "/");
 
             $sql = "SELECT * 
                     FROM users
