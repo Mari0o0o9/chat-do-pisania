@@ -14,8 +14,8 @@
         $login = $_COOKIE['login'];
         
         $sql = "SELECT friend_login
-            FROM friends
-            WHERE user_login = '$login'";
+                FROM friends
+                WHERE user_login = '$login'";
 
         $result = $conn -> query($sql);
 

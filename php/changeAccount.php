@@ -12,30 +12,23 @@
             return null;
         }
         else {
-            $login = $_COOKIE['login'];
+            $account = $_COOKIE['login'];
+            $login = $_POST['login'];
+    
+            $pass = $_POST['pass'];
             $pass1 = $_POST['pass1'];
             $pass2 = $_POST['pass2'];
-
+    
             $sql = "SELECT * 
-                    FROM users
-                    WHERE login = '$login'";
-            $result = $conn -> query($sql);
-
-            if ($result -> num_rows == 0) {
-                echo "Nie prawidłowy Login!!!";
-            }
-            elseif ($pass1 !== $pass2) {
-                echo "Hasła nie są takie same!!!";
-            }
-            else {
-                $hashed_password = password_hash($pass1, PASSWORD_DEFAULT);
-                $sql = "UPDATE users 
-                        SET password='$hashed_password' 
-                        WHERE login='$login'";
-                $conn -> query($sql);
-
-                echo "Zmieniono Hasło pomyślnie!!!";
-                header("refresh:2;url=login.php");
+                    FROM users 
+                    WHERE login = '$account'";
+            $result = $conn->query($sql);
+    
+            if (isset($login) && $login !== '') {
+                if ($row = $result -> fetch_assoc()) {
+                    return "Taki Login juz istnieje";
+                }
+                // musze pomyslec jak to zrobic dobrze!!!
             }
         }
     }
