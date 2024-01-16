@@ -21,14 +21,43 @@
     
             $sql = "SELECT * 
                     FROM users 
-                    WHERE login = '$account'";
+                    WHERE login = '$login'";
             $result = $conn->query($sql);
     
             if (isset($login) && $login !== '') {
-                if ($row = $result -> fetch_assoc()) {
-                    return "Taki Login juz istnieje";
+                if ($result -> num_rows == 1) {
+                    return "Taki Login juz istnieje!!!";
+                }
+                else {
+                    $sql = "UPDATE users
+                            SET login = '$login'
+                            WHERE login = '$account'";
+                    $conn -> query($sql);
+
+                    echo "Zmieniono Login Pomyslnie!!!";
+                    
+                    setcookie('login', $login, time() + 43200, '/');
+
+                    header("refresh:2;url=chat.php");
+                    exit();
                 }
                 // musze pomyslec jak to zrobic dobrze!!!
+            }
+
+            $sql = "SELECT * 
+                    FROM users
+                    WHERE login = '$login'";
+            $result = $conn -> query($sql);
+            
+            if (isset($pass) && $pass !== '') {
+                if (($row = $result -> fetch_assoc()) && password_verify($pass, $row['password'])) {
+                    if ($pass1 !== $pass2) {
+                        echo "Haslo nie jest takie same!!!";
+                    }
+                }
+                else {
+                    echo "Aktualne hasło nie poprawne!!!";
+                }
             }
         }
     }

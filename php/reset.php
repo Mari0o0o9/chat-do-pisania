@@ -12,17 +12,17 @@
             return null;
         }
         else {
-            $login = $_POST['login'];
+            $email = $_POST['login'];
             $pass1 = $_POST['pass1'];
             $pass2 = $_POST['pass2'];
 
             $sql = "SELECT * 
                     FROM users
-                    WHERE login = '$login'";
+                    WHERE email = '$email'";
             $result = $conn -> query($sql);
 
             if ($result -> num_rows == 0) {
-                echo "Nie prawidłowy Login!!!";
+                echo "Nie prawidłowy Email!!!";
             }
             elseif ($pass1 !== $pass2) {
                 echo "Hasła nie są takie same!!!";
@@ -30,8 +30,8 @@
             else {
                 $hashed_password = password_hash($pass1, PASSWORD_DEFAULT);
                 $sql = "UPDATE users 
-                        SET password='$hashed_password' 
-                        WHERE login='$login'";
+                        SET password = '$hashed_password' 
+                        WHERE email = '$email'";
                 $conn -> query($sql);
 
                 echo "Zmieniono Hasło pomyślnie!!!";
@@ -63,7 +63,7 @@
                 <label for="loginName" class="material-symbols-outlined">
                     face
                 </label>
-                <input type="text" id="loginName" placeholder="Podaj Login..." required name="login">
+                <input type="text" id="loginName" placeholder="Podaj Email..." required name="login">
             </p>
             <p>
                 <label for="pass1" class="material-symbols-outlined passVis">
