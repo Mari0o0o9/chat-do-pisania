@@ -61,6 +61,7 @@
                         FROM users
                         WHERE login = '$account'";
                 $result2 = $conn -> query($sql2);
+                
                 if (($row = $result2 -> fetch_assoc()) && password_verify($pass, $row['password'])) {
                     if ($pass1 !== $pass2) {
                         echo "Podane Nowe Hasła nie są takie same!!!";
