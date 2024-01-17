@@ -41,18 +41,19 @@
                     header("refresh:2;url=chat.php");
                     exit();
                 }
-                // musze pomyslec jak to zrobic dobrze!!!
             }
 
-            $sql = "SELECT * 
-                    FROM users
-                    WHERE login = '$login'";
-            $result = $conn -> query($sql);
-            
-            if (isset($pass) && $pass !== '') {
+        
+            if ((isset($pass) && $pass !== '') && (isset($pass1) && $pass1 !== '') && (isset($pass2) && $pass2 == '')) {
+                $sql = "SELECT * 
+                        FROM users
+                        WHERE password = '$pass'";
+                $result = $conn -> query($sql);
+
+                
                 if (($row = $result -> fetch_assoc()) && password_verify($pass, $row['password'])) {
                     if ($pass1 !== $pass2) {
-                        echo "Haslo nie jest takie same!!!";
+                        echo "Haslo nie Sjest takie same!!!";
                     }
                 }
                 else {

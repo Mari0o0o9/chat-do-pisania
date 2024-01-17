@@ -12,7 +12,7 @@
             return null;
         }
         else {
-            $email = $_POST['login'];
+            $email = $_POST['email'];
             $pass1 = $_POST['pass1'];
             $pass2 = $_POST['pass2'];
 
@@ -63,7 +63,7 @@
                 <label for="loginName" class="material-symbols-outlined">
                     face
                 </label>
-                <input type="text" id="loginName" placeholder="Podaj Email..." required name="login">
+                <input type="text" id="loginName" placeholder="Podaj Email..." required name="email">
             </p>
             <p>
                 <label for="pass1" class="material-symbols-outlined passVis">
@@ -94,5 +94,4 @@
 </html>
 <?php
 $conn -> close();
- 
 ?>

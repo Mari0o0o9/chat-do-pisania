@@ -24,29 +24,30 @@
                 WHERE login = '$login'";
         $result = $conn -> query($query);
 
+        $query2 = "SELECT * 
+                FROM users 
+                WHERE email = '$email'";
+        $result2 = $conn -> query($query2);
+
         if ($result -> num_rows > 0) {
             echo "Podany Login już istnieje!!!";
+        }
+        elseif ($result2 -> num_rows > 0) {
+            echo "Podany Email juz istnieje!!!";
         } 
         elseif ($pass1 !== $pass2) {
             echo "Hasła nie są podobne!!!";
         } 
         else {
             $hashed_password = password_hash($pass2, PASSWORD_DEFAULT);
+   
+            $sql = "INSERT INTO users (login, email, password) 
+                    VALUES ('$login', '$email', '$hashed_password')";
 
-            $check_query = "SELECT * FROM users WHERE login = '$login'";
-            $check_result = $conn -> query($check_query);
+            $conn -> query($sql);
 
-            if ($check_result -> num_rows == 0) {
-                
-                $sql = "INSERT INTO users (login, email, password) 
-                        VALUES ('$login', '$email', '$hashed_password')";
-
-                $conn -> query($sql);
-                echo 'Zarejestrowano pomyślnie!!!';
-                header("refresh:2;url=chat.php");
-            } else {
-                echo "Podany Login już istnieje!!!";
-            }
+            echo 'Zarejestrowano pomyślnie!!!';
+            header("refresh:2;url=chat.php");
         }
     } 
 }
