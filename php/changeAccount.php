@@ -5,7 +5,7 @@
         die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
     }
 
-    function changeAccount() {
+    function changeLogin() {
         global $conn;
         
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -14,10 +14,6 @@
         else {
             $account = $_COOKIE['login'];
             $login = $_POST['login'];
-    
-            $pass = $_POST['pass'];
-            $pass1 = $_POST['pass1'];
-            $pass2 = $_POST['pass2'];
     
             $sql = "SELECT * 
                     FROM users 
@@ -43,29 +39,48 @@
                 }
             }
             // nie działa nwm dlaczego jeszcze
-            elseif ((isset($pass) && $pass !== '') && (isset($pass1) && $pass1 !== '') && (isset($pass2) && $pass2 == '')) {
-                if (($row = $result -> fetch_assoc()) && password_verify($pass, $row['password'])) {
+           
+            // nie działa nie wiem dlaczego jeszcze
+        }
+    }
+    function changePass() {
+        global $conn;
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return null;
+        }
+        else {
+            $account = $_COOKIE['login'];
+
+            $pass = $_POST['pass'];
+            $pass1 = $_POST['pass1'];
+            $pass2 = $_POST['pass2'];
+
+            if ((isset($pass) && $pass !== '') && (isset($pass1) && $pass1 !== '') && (isset($pass2) && $pass2 !== '')) {
+                $sql2 = "SELECT *
+                        FROM users
+                        WHERE login = '$account'";
+                $result2 = $conn -> query($sql2);
+                if (($row = $result2 -> fetch_assoc()) && password_verify($pass, $row['password'])) {
                     if ($pass1 !== $pass2) {
-                        echo "Nowe Hasło nie jest takie samo!!!";
+                        echo "Podane Nowe Hasła nie są takie same!!!";
                     }
                     else {
-                        $hashed_new_pass = password_hash($pass1, PASSWORD_DEFAULT);
-                        $sql = "UPDATE users 
-                                SET password = '$hashed_new_pass' 
-                                WHERE login = '$account'";
+                        $hashedPwd = password_hash($pass1, PASSWORD_DEFAULT);
+                        $sql_update = " UPDATE users
+                                        SET password = '$hashedPwd'
+                                        WHERE login = '$account'";
+                        $conn -> query($sql_update);
 
-                        $conn -> query($sql);
-
-                        echo "Zaktualizowano hasło pomyślnie!!!";
-                        header("refresh:2;url=chat.php");
+                        echo "Zaktualizowano Hasło pomyślnie!!!";
+                        header('refresh:2;url=chat.php');
                         exit();
                     }
                 }
                 else {
-                    echo "Aktualne hasło nie poprawne!!!";
+                    echo "Aktualne Hasło jest nie poprawne!!!";
                 }
             }
-            // nie działa nie wiem dlaczego jeszcze
         }
     }
 ?>
@@ -138,7 +153,12 @@
                 <input type="submit" value="Wprowadź zmiany">
             </p>
         </form>
-        <p class="wynik"><?=changeAccount();?></p>
+        <p class="wynik">
+        <?php 
+            changeLogin();
+            changePass();
+        ?>
+        </p>
     </div>
 </body>
 <script src="../JavaScript/password.js"></script>
