@@ -53,7 +53,7 @@
                 
                 if (($row = $result -> fetch_assoc()) && password_verify($pass, $row['password'])) {
                     if ($pass1 !== $pass2) {
-                        echo "Haslo nie Sjest takie same!!!";
+                        echo "Haslo nie jest takie same!!!";
                     }
                 }
                 else {
