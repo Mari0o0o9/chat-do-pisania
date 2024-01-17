@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sty 14, 2024 at 04:13 PM
+-- Generation Time: Sty 17, 2024 at 02:37 AM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.1.17
 
@@ -28,18 +28,18 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `friends` (
-  `login_id` int(11) NOT NULL,
-  `login` text NOT NULL,
-  `friend_id` int(11) NOT NULL,
-  `friend` text NOT NULL
+  `id` int(11) NOT NULL,
+  `user_login` text NOT NULL,
+  `friend_login` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `friends`
 --
 
-INSERT INTO `friends` (`login_id`, `login`, `friend_id`, `friend`) VALUES
-(1, 'Mari0', 2, 'adam');
+INSERT INTO `friends` (`id`, `user_login`, `friend_login`) VALUES
+(1, 'Mari0', 'adam'),
+(2, 'Mari0', 'Michał');
 
 -- --------------------------------------------------------
 
@@ -59,8 +59,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `login`, `email`, `password`) VALUES
-(1, 'Mari0', 'morteusz111@gmail.com', '$2y$10$rF4ShTH6PFKiyQgBEEeN/.TM7CCdLoxxomTAxum1XvmllUKwqd/0i'),
-(2, 'adam', 'sdasd@gmail.com', '$2y$10$n3S0i6rxhmxb3JjknlAvu.WPBoF/QhmEObeJW.aY1dlrnXQpCYg4u');
+(1, 'Mari0', 'morteusz111@gmail.com', '$2y$10$oM7EkqkfxpACQuzCvZUutO2/MNyA/Pi43vVlQAbky0yjP/wgOufyq'),
+(2, 'adam', 'sdasd@gmail.com', '$2y$10$n3S0i6rxhmxb3JjknlAvu.WPBoF/QhmEObeJW.aY1dlrnXQpCYg4u'),
+(3, 'Michał', 'hdfhd@gmail.com', '$2y$10$cEQJ34KsJyS3xoBJj0pJW..XUJ3Hfxw9be4qG36cp0GXf/G0P9M.y');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -70,8 +71,7 @@ INSERT INTO `users` (`user_id`, `login`, `email`, `password`) VALUES
 -- Indeksy dla tabeli `friends`
 --
 ALTER TABLE `friends`
-  ADD PRIMARY KEY (`login_id`),
-  ADD KEY `fk_firnedId` (`friend_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indeksy dla tabeli `users`
@@ -87,24 +87,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `friends`
---
-ALTER TABLE `friends`
-  ADD CONSTRAINT `fk_firnedId` FOREIGN KEY (`friend_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `fk_loginId` FOREIGN KEY (`login_id`) REFERENCES `users` (`user_id`);
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
