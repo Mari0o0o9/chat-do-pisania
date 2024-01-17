@@ -51,6 +51,10 @@
                 <?= friendList();?>
             </ul>
         </div>
+        <a href="./login.php" id="logout">
+            <div class="material-symbols-outlined">logout</div>
+            Wyloguj się
+        </a>
     </nav>
     <main>
         <header>

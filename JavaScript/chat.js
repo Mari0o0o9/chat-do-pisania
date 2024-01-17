@@ -21,4 +21,12 @@ function sendMessage() {
         }
     })
 }
-sendMessage()
+sendMessage();
+
+function logout() {
+    var logoutButton = document.getElementById('logout');
+    logoutButton.addEventListener('click', ()=> {
+        document.cookie = 'login' + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; //data skopiowana 
+    })
+}
+logout();
