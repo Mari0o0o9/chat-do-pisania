@@ -15,15 +15,18 @@
             $login = $_POST['loginName'];
             $pass = $_POST['passLogin'];
 
-            setcookie("login", $login, time() + 43200, "/");
-
             $sql = "SELECT * 
                     FROM users
                     WHERE login = '$login'";
             $result = $conn -> query($sql);
-            
 
             if (($row = $result -> fetch_assoc()) && password_verify($pass, $row['password'])) {
+                setcookie("login", $login, time() + 43200, "/");
+                setcookie("ID", $row['user_id'], time() + 43200, "/");
+
+                // "INSERT INTO sessions (session_id, user_id) 
+                // VALUES ('$_COOKIE['PHPSESSID']', '$row['user_id']')"; POMYSŁ DO WDROŻENIA!!!
+
                 echo "Zalogowano pomyślnie!!!";
                 header("refresh:2;url=chat.php");
             }

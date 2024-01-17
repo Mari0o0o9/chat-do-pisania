@@ -5,7 +5,7 @@
         die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
     }
 
-    if ($_COOKIE['login'] == null) {
+    if ($_COOKIE['login'] == null && $_COOKIE['ID'] == null) {
         header("Location: login.php");
     }
 

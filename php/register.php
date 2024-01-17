@@ -17,7 +17,7 @@
         $pass1 = $_POST['pass1Reg'];
         $pass2 = $_POST['pass2Reg'];
 
-        setcookie("login", $login, time() + 43200, "/");
+        
 
         $query = "SELECT * 
                 FROM users 
@@ -46,8 +46,18 @@
 
             $conn -> query($sql);
 
-            echo 'Zarejestrowano pomyślnie!!!';
-            header("refresh:2;url=chat.php");
+            if ($conn -> query($sql) === TRUE) {
+                $newUserId = $conn ->insert_id;
+
+                setcookie("login", $login, time() + 43200, "/");
+                setcookie("ID", $newUserId, time() + 43200, "/");
+
+                echo 'Zarejestrowano pomyślnie!!!';
+                header("refresh:2;url=chat.php");
+            }
+            else {
+                echo "Błąd podczas dodawania użytkownika!!!";
+            }  
         }
     } 
 }
