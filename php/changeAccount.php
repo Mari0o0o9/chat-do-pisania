@@ -42,24 +42,30 @@
                     exit();
                 }
             }
-
-        
-            if ((isset($pass) && $pass !== '') && (isset($pass1) && $pass1 !== '') && (isset($pass2) && $pass2 == '')) {
-                $sql = "SELECT * 
-                        FROM users
-                        WHERE password = '$pass'";
-                $result = $conn -> query($sql);
-
-                
+            // nie działa nwm dlaczego jeszcze
+            elseif ((isset($pass) && $pass !== '') && (isset($pass1) && $pass1 !== '') && (isset($pass2) && $pass2 == '')) {
                 if (($row = $result -> fetch_assoc()) && password_verify($pass, $row['password'])) {
                     if ($pass1 !== $pass2) {
-                        echo "Haslo nie jest takie same!!!";
+                        echo "Nowe Hasło nie jest takie samo!!!";
+                    }
+                    else {
+                        $hashed_new_pass = password_hash($pass1, PASSWORD_DEFAULT);
+                        $sql = "UPDATE users 
+                                SET password = '$hashed_new_pass' 
+                                WHERE login = '$account'";
+
+                        $conn -> query($sql);
+
+                        echo "Zaktualizowano hasło pomyślnie!!!";
+                        header("refresh:2;url=chat.php");
+                        exit();
                     }
                 }
                 else {
                     echo "Aktualne hasło nie poprawne!!!";
                 }
             }
+            // nie działa nie wiem dlaczego jeszcze
         }
     }
 ?>
