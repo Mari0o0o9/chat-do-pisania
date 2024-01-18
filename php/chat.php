@@ -94,7 +94,7 @@
         </div>
         <div id="chat">
             <h3>Czaty:</h3> 
-            <form action="" method="POST">
+            <form method="POST">
                 <input type="text" name="search" placeholder="Szukaj Znajomych...">
                 <input type="submit" value="send" class="material-symbols-outlined">
             </form>
