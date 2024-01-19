@@ -36,6 +36,6 @@ function friendsTimeout() {
     var clear = document.getElementById('searchWynik')
     setTimeout(() => {
         clear.textContent = '';
-    }, 2500);
+    }, 2000);
 }
 friendsTimeout();

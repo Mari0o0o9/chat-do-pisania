@@ -22,7 +22,7 @@
         $result = $conn -> query($sql);
 
         while ($row = $result -> fetch_array()) {
-            echo "<li>$row[login]</li>";
+            echo "<li><a href=''>$row[login]<a></li>";
         }
     }
 
