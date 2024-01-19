@@ -22,7 +22,7 @@
         $result = $conn -> query($sql);
 
         while ($row = $result -> fetch_array()) {
-            echo "<li><a href=''>$row[login]<a></li>";
+            echo "<a href='./chat.php?friend=$row[friend_id]&name=$row[login]' class='friends'><li>$row[login]</li><a>";
         }
     }
 
@@ -56,7 +56,7 @@
                     echo "Nie możesz dodać samego siebie!!!";
                 }
                 elseif ($result2 == true && $result2 -> num_rows > 0) {
-                    echo "Posiadasz już użytkownika w zanjomych!!!";
+                    echo "Posiadasz już go w zanjomych!!!";
                 }
                 else {
                     $sql2 = "INSERT INTO friends (users_id, friend_id)
@@ -71,6 +71,27 @@
             }
         }    
     }
+
+    function profil() {
+        global $conn;
+
+        $user_id = $_COOKIE['ID'];
+
+        $sql = "SELECT file_path 
+                FROM images 
+                WHERE user_id = '$user_id'";
+        $result = $conn -> query($sql);
+
+        if ($result -> num_rows > 0) {
+            $imgRow = $result -> fetch_assoc()['file_path'];
+
+            echo "<img src='./profil/$imgRow' alt='Profilowe zdjęcie' class='profil'>";
+        }
+        else {
+            echo "<img src='./profil/user.png' alt='Profilowe zdjęcie' class='profil'>";
+        }
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -85,23 +106,27 @@
 <body>
     <nav>
         <div id="account">
-            <h2>Witaj, <?=$_COOKIE['login']?>!!!</h2>
+            <div>
+                <?= profil();?>
+            </div>
+            <h3>Witaj, <?=$_COOKIE['login']?>!!!</h3>
             <a href="./changeAccount.php">
                 <span class="material-symbols-outlined">
-                settings
+                    settings
                 </span>
             </a>
         </div>
         <div id="chat">
             <h3>Czaty:</h3> 
             <form method="POST">
-                <input type="text" name="search" placeholder="Szukaj Znajomych...">
+                <input type="text" name="search" id="search" placeholder="Szukaj Znajomych...">
                 <input type="submit" value="send" class="material-symbols-outlined">
             </form>
             <p id="searchWynik">
                 <?= search(); ?>
             </p>
         </div>
+        <hr>
         <div id="friendList">
             <ul>
                 <?= friendList();?>
@@ -114,7 +139,7 @@
     </nav>
     <main>
         <header>
-            Osoba z która piszesz :D
+            piszesz z nim
         </header>
         <section id="chat">
             <div class="message other-message">   

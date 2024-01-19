@@ -140,3 +140,9 @@ input[type = 'submit']:active {
     font-style: italic;
     color: white;
 }
+#fileName {
+    color: white;
+    padding: 0;
+    margin: 0;
+    font-weight: bold;
+}

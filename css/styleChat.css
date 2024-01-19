@@ -133,6 +133,14 @@ li {
     font-size: 1.2rem;
     font-weight: bold;
 }
+li:hover {
+    background-color: #ffc4ab;
+}
+.friends {
+    text-decoration: none;
+    color: black;
+}
+
 #account {
     display: flex;
     justify-content: space-around;
@@ -172,7 +180,10 @@ li {
     margin-right: 10px;
 }
 
-
+#chat h3 {
+    padding: 6px;
+    margin: 5px;
+}
 #chat form {
     display: flex;
     align-items: center;
@@ -208,6 +219,17 @@ li {
     color: white;
     font-weight: bold;
     font-style: italic;
+}
+#search {
+    font-weight: bold;
+}
+.profil {
+    padding: 6px;
+    margin: 5px;
+    border-radius: 50%;
+    object-fit: cover;
+    height: 55px;
+    width: 55px;
 }
 
 

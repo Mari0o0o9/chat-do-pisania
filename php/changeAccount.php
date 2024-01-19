@@ -84,6 +84,61 @@
             }
         }
     }
+
+    function imgProfil() {
+        global $conn;
+
+        $user_id = $_COOKIE['ID'];
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return null;
+        }
+        else {
+            $target_dir = "profil/";
+            if (!file_exists($target_dir)) {
+                mkdir($target_dir, 0777, true);
+            }
+
+            $file_name = uniqid(). '_' . basename($_FILES["file"]["name"]);
+            $target_file = $target_dir . $file_name;
+
+
+            if (!move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                echo "Wystąpił błąd podczas przesyłania pliku!!!";
+                return null;
+            } 
+        
+
+            $check_sql = "SELECT * 
+                        FROM images 
+                        WHERE user_id = '$user_id'";
+            $check_result = $conn -> query($check_sql);
+
+            if ($check_result -> num_rows > 0) {
+                $old_file_name = $check_result -> fetch_assoc()['file_path'];
+                $old_file_path = $target_dir . $old_file_name;
+                unlink($old_file_path);
+
+                $update_sql = "UPDATE images 
+                                SET file_path = '$file_name' 
+                                WHERE user_id = '$user_id'";
+                $conn -> query($update_sql);
+    
+                echo "Plik został zaktualizowany!!!";
+                header("refresh:2;url=chat.php");
+            } 
+            else {
+                $insert_sql = "INSERT INTO images (file_path, user_id) 
+                                VALUES ('$file_name', '$user_id')";
+                $conn -> query($insert_sql);
+    
+                echo "Plik został przesłany!!!";
+                header("refresh:2;url=chat.php");
+            }
+    
+
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -103,12 +158,13 @@
                 Wróć =>
             </button>
         </a>
-        <form id="myFormLogin" method="post">
+        <form id="myFormLogin" method="post" enctype="multipart/form-data">
             <div class="block">
                 <h3>Zmiana Zdjęcia:</h3>
                 <p>
                     <label for="file" id="fileLabel">Wybierz zdjęcię</label>
                     <input type="file" name="file" id="file">
+                    <p id="fileName"></p>
                 </p>
             </div>
             <div class="block">
@@ -158,11 +214,13 @@
         <?php 
             changeLogin();
             changePass();
+            imgProfil();
         ?>
         </p>
     </div>
 </body>
 <script src="../JavaScript/password.js"></script>
+<script src="../JavaScript/file.js"></script>
 </html>
 <?php
 $conn -> close();
