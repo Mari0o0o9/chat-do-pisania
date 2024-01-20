@@ -9,24 +9,6 @@
         header("Location: login.php");
     }
 
-    function friendList() {
-        global $conn;
-        $login = $_COOKIE['login'];
-        $id = $_COOKIE['ID'];
-        
-        $sql = "SELECT friends.friend_id, users.login
-                FROM friends
-                JOIN users ON users.user_id = friends.friend_id
-                WHERE friends.users_id = '$id'";
-
-        $result = $conn -> query($sql);
-
-        while ($row = $result -> fetch_array()) {
-            echo "<a href='./chat.php?friend=$row[friend_id]&name=$row[login]' class='friends'><li>$row[login]</li><a>";
-        }
-    }
-
-    // Funkcja nie działa
     function search() {
         global $conn;
 
@@ -72,7 +54,42 @@
         }    
     }
 
-    function profil() {
+    function friendList() {
+        global $conn;
+        $login = $_COOKIE['login'];
+        $id = $_COOKIE['ID'];
+        
+        $sql = "SELECT friends.friend_id, users.login
+                FROM friends
+                JOIN users ON users.user_id = friends.friend_id
+                WHERE friends.users_id = '$id'";
+
+        $result = $conn -> query($sql);
+
+        if ($result -> num_rows > 0) {
+            while ($row = $result -> fetch_assoc()) {
+                $friendId = $row['friend_id'];
+                $friendLogin = $row['login'];
+    
+                $sql2 = "SELECT file_path 
+                         FROM images 
+                         WHERE user_id = '$friendId'";
+                $result2 = $conn -> query($sql2);
+    
+                $imgPath = ($result2 -> num_rows > 0) ? $result2 -> fetch_assoc()['file_path'] : 'user.png';
+    
+                echo "<a href='./chat.php?friend=$friendId&name=$friendLogin' class='friends'>
+                        <img src='./profil/$imgPath' alt='Profilowe zdjęcie' class='profilFriend'>
+                        <li>$friendLogin</li>
+                    </a>";
+            }
+        }
+        else {
+            return null;
+        }
+    }
+
+    function profilUser() {
         global $conn;
 
         $user_id = $_COOKIE['ID'];
@@ -107,9 +124,9 @@
     <nav>
         <div id="account">
             <div>
-                <?= profil();?>
+                <?= profilUser();?>
             </div>
-            <h3>Witaj, <?=$_COOKIE['login']?>!!!</h3>
+            <h3>Witaj, <?=$_COOKIE['login']?> !!!</h3>
             <a href="./changeAccount.php">
                 <span class="material-symbols-outlined">
                     settings

@@ -124,22 +124,6 @@ ul {
     list-style-type: none;
     padding: 0;
 }
-li {
-    background-color: #f6b6a2;
-    padding: 6px;
-    margin: 5px;
-    text-align: center;
-    border-radius: 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-li:hover {
-    background-color: #ffc4ab;
-}
-.friends {
-    text-decoration: none;
-    color: black;
-}
 
 #account {
     display: flex;
@@ -230,6 +214,30 @@ li:hover {
     object-fit: cover;
     height: 55px;
     width: 55px;
+}
+.profilFriend {
+    border-radius: 50%;
+    margin-right: 15%;
+    height: 30px;
+    width: 30px;
+}
+.friends {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    background-color: #f6b6a2;
+    padding: 6px;
+    margin: 5px;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+.friends:hover {
+    background-color: #ffc4ab;
 }
 
 
