@@ -49,7 +49,8 @@
                 }  
             }
             else {
-                echo "Nie znaleziono takiego Użytkownika!!!";
+                $result_search = ($search == '') ? null : "Nie znaleziono takiego Użytkownika!!!";
+                return $result_search;
             }
         }    
     }
@@ -114,8 +115,8 @@
         global $conn;
 
         $user_id = $_COOKIE['ID'];
-        $friend_id = $_GET['friend'];
-        $friend_login = $_GET['name'];
+        $friend_id = (isset($_GET['friend'])) ? $_GET['friend'] : null;
+        $friend_login = (isset($_GET['name'])) ? $_GET['name'] : null;
 
         $sql_select = "SELECT *
                         FROM messages
@@ -127,13 +128,12 @@
         if ($result_select -> num_rows > 0) {
             while ($row = $result_select -> fetch_assoc()) {
                 $sender = ($row['sender_id'] == $user_id) ? "You" : $friend_login;
+                $class = ($sender == $friend_login) ? "other-message" : "my-message";
                 $content = $row['content'];
-                $time = $row['timestamp'];
 
-                echo "  <div class='message my-message'>
+                echo "  <div class='message $class'>
                             <strong>$sender:</strong>
                                $content
-                            <span>($time)</span>
                         </div>";
             }
         }
@@ -190,15 +190,6 @@
             <?= $write = (isset($_GET['name'])) ? $_GET['name'] : null?>
         </header>
         <section id="chat">
-            <div class="message other-message">   
-                wqewqewquegqwe   
-            </div>
-            <div class="message my-message">
-                sajkdsksadsadasdasdasasadasdsdasda
-            </div>
-            <div class="message other-message">
-                sajkdsksadsadasdasdasasadasdsdasda
-            </div>
             <?= chat()?>
         </section>
         <footer>
