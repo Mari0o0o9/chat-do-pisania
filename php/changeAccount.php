@@ -38,9 +38,6 @@
                     exit();
                 }
             }
-            // nie działa nwm dlaczego jeszcze
-           
-            // nie działa nie wiem dlaczego jeszcze
         }
     }
     function changePass() {
@@ -124,7 +121,7 @@
                                 WHERE user_id = '$user_id'";
                 $conn -> query($update_sql);
     
-                echo "Plik został zaktualizowany!!!";
+                echo "Zdjęcie profilowe zostało zaktualizowane!!!";
                 header("refresh:2;url=chat.php");
             } 
             else {
@@ -132,11 +129,9 @@
                                 VALUES ('$file_name', '$user_id')";
                 $conn -> query($insert_sql);
     
-                echo "Plik został przesłany!!!";
+                echo "Zdjęcie profilowe zostało przesłane!!!";
                 header("refresh:2;url=chat.php");
             }
-    
-
         }
     }
 ?>

@@ -62,9 +62,6 @@ nav {
     max-width: 45%;
     word-wrap: break-word;
 }
-.message span {
-    font-size: 5px;
-}
 
 .other-message {
     text-align: left;
