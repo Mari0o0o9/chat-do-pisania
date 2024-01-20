@@ -62,7 +62,6 @@ nav {
     max-width: 45%;
     word-wrap: break-word;
 }
-
 .other-message {
     text-align: left;
     float: left;
@@ -166,15 +165,15 @@ ul {
     margin-right: 10px;
 }
 
-#chat h3 {
+#chatSearch h3 {
     padding: 6px;
     margin: 5px;
 }
-#chat form {
+#chatSearch form {
     display: flex;
     align-items: center;
 }
-#chat input[type = "text"] {
+#chatSearch input[type = "text"] {
     background-color: #f3838e;
     width: 60%;
     border: none;
@@ -184,20 +183,20 @@ ul {
     margin: 5px;
 }
 
-#chat input[type = "text"]:focus{
+#chatSearch input[type = "text"]:focus{
     box-shadow: 8px 8px 24px 0px rgba(6, 6, 6, 1);
 }
-#chat input[type = "text"]::placeholder {
+#chatSearch input[type = "text"]::placeholder {
     color: white;
 }
-#chat input[type = "submit"] {
+#chatSearch input[type = "submit"] {
     border: none;
     background: transparent;
     color: white;
     cursor: pointer;
     transition: 0.2s;
 }
-#chat input[type = "submit"]:active {
+#chatSearch input[type = "submit"]:active {
     transform: scale(0.9);
     color: #f3838e;
 }

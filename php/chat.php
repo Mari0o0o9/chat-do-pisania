@@ -133,7 +133,9 @@
 
                 echo "  <div class='message $class'>
                             <strong>$sender:</strong>
-                               $content
+                                <div>
+                                    $content
+                                </div>   
                         </div>";
             }
         }
@@ -164,7 +166,7 @@
                 </span>
             </a>
         </div>
-        <div id="chat">
+        <div id="chatSearch">
             <h3>Czaty:</h3> 
             <form method="POST">
                 <input type="text" name="search" id="search" placeholder="Szukaj Znajomych...">

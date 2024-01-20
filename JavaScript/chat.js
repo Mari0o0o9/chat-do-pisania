@@ -5,13 +5,22 @@ function sendMessage() {
     
     send.addEventListener('click', ()=> {
         if (text.value == '') { 
-            return 0;
+            return null;
         }
         else {
+            var messageContainer = document.createElement('div');
             var message = document.createElement('div');
-            message.classList.add('message', 'my-message');
+            var strong = document.createElement('strong');
+
+            messageContainer.classList.add('message', 'my-message');
+
+            strong.textContent = 'You:';
             message.textContent = text.value;
-            chat.appendChild(message);
+
+            messageContainer.appendChild(strong);
+            messageContainer.appendChild(message);
+            chat.appendChild(messageContainer);
+
             text.value = '';
         }
     })
