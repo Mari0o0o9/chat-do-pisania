@@ -76,8 +76,8 @@
     <div id="register">
         <h1>Rejestracja:</h1>
         <a href="./login.php">
-            <button id="switch2">
-                Logowanie =>
+            <button id="switch1">
+                Logowanie
             </button> 
         </a>
         <form id="myFormRegister" method="post">

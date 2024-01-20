@@ -55,7 +55,7 @@
         <h1>Zmiana Hasła:</h1>
         <a href="./login.php">
             <button id="switch1">
-                Logowanie =>
+                Logowanie
             </button>
         </a>
         <form id="myFormLogin" method="post"> 

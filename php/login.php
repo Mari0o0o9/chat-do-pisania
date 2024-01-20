@@ -53,7 +53,7 @@
         <h1>Logowanie:</h1>
         <a href="./register.php">
             <button id="switch1">
-                Rejestracja =>
+                Rejestracja
             </button>
         </a>
         <form id="myFormLogin" method="post"> 

@@ -109,6 +109,37 @@
         }
     }
 
+    // funkcja do napisania i zmiana css od wiadomosci od zera najlepiej 
+    function chat() {
+        global $conn;
+
+        $user_id = $_COOKIE['ID'];
+        $friend_id = $_GET['friend'];
+        $friend_login = $_GET['name'];
+
+        $sql_select = "SELECT *
+                        FROM messages
+                        WHERE (sender_id = '$user_id' AND receiver_id = '$friend_id')
+                        OR (sender_id = '$friend_id' AND receiver_id = '$user_id')
+                        ORDER BY timestamp";
+        $result_select = $conn -> query($sql_select);
+
+        if ($result_select -> num_rows > 0) {
+            while ($row = $result_select -> fetch_assoc()) {
+                $sender = ($row['sender_id'] == $user_id) ? "You" : $friend_login;
+                $content = $row['content'];
+                $time = $row['timestamp'];
+
+                echo "  <div class='message my-message'>
+                            <strong>$sender:</strong>
+                               $content
+                            <span>($time)</span>
+                        </div>";
+            }
+        }
+        $sql_insert = "";
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -126,7 +157,7 @@
             <div>
                 <?= profilUser();?>
             </div>
-            <h3>Witaj, <?=$_COOKIE['login']?> !!!</h3>
+            <h3>Witaj, <?=$_COOKIE['login']?>!!!</h3>
             <a href="./changeAccount.php">
                 <span class="material-symbols-outlined">
                     settings
@@ -156,7 +187,7 @@
     </nav>
     <main>
         <header>
-            piszesz z nim
+            <?= $write = (isset($_GET['name'])) ? $_GET['name'] : null?>
         </header>
         <section id="chat">
             <div class="message other-message">   
@@ -168,6 +199,7 @@
             <div class="message other-message">
                 sajkdsksadsadasdasdasasadasdsdasda
             </div>
+            <?= chat()?>
         </section>
         <footer>
             <input type="text" id="text" placeholder="Napisz wiadomość...">

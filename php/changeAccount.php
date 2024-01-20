@@ -99,7 +99,7 @@
                 mkdir($target_dir, 0777, true);
             }
 
-            $file_name = uniqid(). '_' . basename($_FILES["file"]["name"]);
+            $file_name = uniqid() . '_' . basename($_FILES["file"]["name"]);
             $target_file = $target_dir . $file_name;
 
 
@@ -155,7 +155,7 @@
         <h1>Ustawienia konta:</h1>
         <a href="./chat.php">
             <button id="switch1">
-                Wróć =>
+                Wróć
             </button>
         </a>
         <form id="myFormLogin" method="post" enctype="multipart/form-data">

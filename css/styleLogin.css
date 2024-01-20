@@ -10,27 +10,34 @@ h1 {
     align-items: center;
 }
 button {
+    font-family: Rockwell Extra Bold,Rockwell Bold,monospace;
     position: absolute;
+    padding: 5px;
     top: 10px;
     right: 10px;
     color: white;
     border: none;
-    background: transparent;
+    border-radius: 10px;
+    background-color: #f3838e;
     cursor: pointer;
+    transition: 0.4s;
 }
 .changePassword {
     position: absolute;
     top: 10px;
     left: 10px;
-    font-size: 10px;
+    text-align: center;
+    font-size: 0.8rem;
     color: white;
-    transition: 0.8s;
+    transition: 0.4s;
     cursor: pointer;
 }
-.changePassword:hover {
+.changePassword:hover,
+button:hover {
     box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
     transform: scale(1.1);
 }
+
 
 #login, 
 #register,
@@ -39,7 +46,7 @@ button {
     border-radius: 10px;
     margin: auto;
     padding: 10px;
-    width: 50vh;
+    width: 35vw;
     margin-top: 23vh;
     background-color: #803c5a;
     box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
