@@ -139,9 +139,7 @@
                         </div>";
             }
         }
-        $sql_insert = "";
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -195,8 +193,8 @@
             <?= chat()?>
         </section>
         <footer>
-            <input type="text" id="text" placeholder="Napisz wiadomość...">
-            <button id="send" class="material-symbols-outlined">
+            <input type="text" name="textSend" id="text" placeholder="Napisz wiadomość...">
+            <button id="send" name="send" class="material-symbols-outlined">
                 send
             </button>
         </footer>
