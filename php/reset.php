@@ -71,7 +71,7 @@
                 </label>
                 <input type="password" id="pass1" placeholder="Podaj Hasło..." minlength="12" required name="pass1" class="pass">
                 <span class="material-symbols-outlined visPass">
-                    visibility_off
+                    visibility
                 </span>
             </p>
             <p>
@@ -80,7 +80,7 @@
                 </label>
                 <input type="password" id="pass2" placeholder="Powtórz Hasło..." minlength="12" required name="pass2" class="pass">
                 <span class="material-symbols-outlined visPass">
-                    visibility_off
+                    visibility
                 </span>
             </p>
             <p>

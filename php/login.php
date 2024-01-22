@@ -24,6 +24,7 @@
                 
                 setcookie("login", $login, time() + 43200, "/");
                 setcookie("ID", $row['user_id'], time() + 43200, "/");
+                setcookie("email", $row['email'], time() + 43200, "/");
 
                 // "INSERT INTO sessions (session_id, user_id) 
                 // VALUES ('$_COOKIE['PHPSESSID']', '$row['user_id']')"; POMYSŁ DO WDROŻENIA!!!
@@ -69,7 +70,7 @@
                 </label>
                 <input type="password" id="passLog" placeholder="Podaj Hasło..." required name="passLogin" class="pass"> 
                 <span class="material-symbols-outlined visPass">
-                    visibility_off
+                    visibility
                 </span>
             </p>
             <p>

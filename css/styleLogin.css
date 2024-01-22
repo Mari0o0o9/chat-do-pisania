@@ -38,10 +38,8 @@ button:hover {
     transform: scale(1.1);
 }
 
-
 #login, 
-#register,
-#accountSetings{
+#register{
     position: relative;
     border-radius: 10px;
     margin: auto;
@@ -51,6 +49,25 @@ button:hover {
     background-color: #803c5a;
     box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
 }
+
+#changeAccount {
+    display: flex;
+    justify-content: center;
+}
+
+#accountSetings,
+#account {
+    width: 25vw;
+    background-color: #803c5a;
+    box-shadow: 8px 8px 24px 0px rgba(0, 0, 0, 1);
+    padding: 10px;
+    position: relative;
+    border-radius: 10px;
+    margin: 2%;
+    margin-top: 15vh;
+    height: fit-content;
+}
+
 p {
     font-size: 1.2em;
     display: flex;
@@ -152,4 +169,18 @@ input[type = 'submit']:active {
     padding: 0;
     margin: 0;
     font-weight: bold;
+}
+
+.profil {
+    padding: 6px;
+    margin: 5px;
+    border-radius: 50%;
+    object-fit: cover;
+    height: 75px;
+    width: 75px;
+}
+#account .block p {
+    color: white;
+    font-weight: bold;
+    font-style: italic;
 }

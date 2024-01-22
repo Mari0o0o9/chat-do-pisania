@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (input.type === 'password') {
                 input.type = 'text';
-                icon.textContent = 'visibility';
+                icon.textContent = 'visibility_off';
             } else {
                 input.type = 'password';
-                icon.textContent = 'visibility_off';
+                icon.textContent = 'visibility';
             }
         });
     });

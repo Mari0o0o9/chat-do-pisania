@@ -5,6 +5,10 @@
         die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
     }
 
+    if ($_COOKIE['login'] == null && $_COOKIE['ID'] == null) {
+        header("Location: login.php");
+    }
+
     function changeLogin() {
         global $conn;
         
@@ -18,11 +22,11 @@
             $sql = "SELECT * 
                     FROM users 
                     WHERE login = '$login'";
-            $result = $conn->query($sql);
+            $result = $conn -> query($sql);
     
             if (isset($login) && $login !== '') {
                 if ($result -> num_rows == 1) {
-                    return "Taki Login juz istnieje!!!";
+                    echo "Taki Login juz istnieje!!!";
                 }
                 else {
                     $sql = "UPDATE users
@@ -81,6 +85,40 @@
             }
         }
     }
+    
+    function changeEmail() {
+        global $conn;
+        
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return null;
+        }
+        else {
+            $account = $_COOKIE['login'];
+            $email = $_POST['email'];
+    
+            $sql = "SELECT * 
+                    FROM users 
+                    WHERE email = '$email'";
+            $result = $conn -> query($sql);
+    
+            if (isset($email) && $email !== '') {
+                if ($result -> num_rows == 1) {
+                    echo "Taki Email juz istnieje!!!";
+                }
+                else {
+                    $sql = "UPDATE users
+                            SET email = '$email'
+                            WHERE login = '$account'";
+                    $conn -> query($sql);
+
+                    echo "Zmieniono Email Pomyslnie!!!";
+
+                    header("refresh:2;url=chat.php");
+                    exit();
+                }
+            }
+        }
+    }
 
     function imgProfil() {
         global $conn;
@@ -101,7 +139,7 @@
 
 
             if (!move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-                echo "Wystąpił błąd podczas przesyłania pliku!!!";
+                // echo "Wystąpił błąd podczas przesyłania pliku!!!";
                 return null;
             } 
         
@@ -134,6 +172,26 @@
             }
         }
     }
+
+    function profilImg() {
+        global $conn;
+
+        $user_id = $_COOKIE['ID'];
+
+        $sql = "SELECT file_path 
+                FROM images 
+                WHERE user_id = '$user_id'";
+        $result = $conn -> query($sql);
+
+        if ($result -> num_rows > 0) {
+            $imgRow = $result -> fetch_assoc()['file_path'];
+
+            echo "<img src='./profil/$imgRow' alt='Profilowe zdjęcie' class='profil'>";
+        }
+        else {
+            echo "<img src='./profil/user.png' alt='Profilowe zdjęcie' class='profil'>";
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -145,7 +203,29 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="shortcut icon" href="../zdjecia/favicon.ico" type="image/x-icon">
 </head>
-<body>
+<body id="changeAccount">
+    <div id="account">
+        <h1>Dane Konta:</h1>
+        <div class="block">
+            <h3>Zdjęcie</h3>
+            <p>
+                <?= profilImg();?>
+            </p>
+        </div>
+        <div class="block">
+            <h3>Login</h3>
+            <p>
+                <?= $_COOKIE['login']?>
+            </p>
+        </div>
+        <div class="block">
+            <h3>Email</h3>
+            <p>
+                <?= $_COOKIE['email']?>
+            </p>
+        </div>
+    </div>
+
     <div id="accountSetings">
         <h1>Ustawienia konta:</h1>
         <a href="./chat.php">
@@ -172,6 +252,15 @@
                 </p>
             </div>
             <div class="block">
+                <h3>Zmiana Emailu:</h3>
+                <p>
+                    <label for="changeEmail" class="material-symbols-outlined">
+                        alternate_email
+                    </label>
+                    <input type="email" name="email" id="changeEmail" placeholder="Podaj nowy Email...">
+                </p>
+            </div>
+            <div class="block">
                 <h3>Zmiana Hasła:</h3>
                 <p>
                     <label for="pass" class="material-symbols-outlined passVis">
@@ -179,7 +268,7 @@
                     </label>
                     <input type="password" id="pass" placeholder="Aktualne Hasło..." minlength="12" name="pass" class="pass">        
                     <span class="material-symbols-outlined visPass">
-                        visibility_off
+                        visibility
                     </span>
                 </p>
                 <p>
@@ -188,7 +277,7 @@
                     </label>
                     <input type="password" id="pass1" placeholder="Nowe Hasło..." minlength="12" name="pass1" class="pass">
                     <span class="material-symbols-outlined visPass">
-                        visibility_off
+                        visibility
                     </span>
                 </p>
                 <p>
@@ -197,7 +286,7 @@
                     </label>
                     <input type="password" id="pass2" placeholder="Powtórz Hasło..." minlength="12" name="pass2" class="pass">
                     <span class="material-symbols-outlined visPass">
-                        visibility_off
+                        visibility
                     </span>
                 </p>
             </div> 
@@ -210,6 +299,7 @@
             changeLogin();
             changePass();
             imgProfil();
+            changeEmail();
         ?>
         </p>
     </div>

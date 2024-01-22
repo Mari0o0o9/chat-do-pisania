@@ -17,8 +17,6 @@
         $pass1 = $_POST['pass1Reg'];
         $pass2 = $_POST['pass2Reg'];
 
-        
-
         $query = "SELECT * 
                 FROM users 
                 WHERE login = '$login'";
@@ -47,10 +45,11 @@
             $conn -> query($sql);
 
             if ($conn -> query($sql) === TRUE) {
-                $newUserId = $conn ->insert_id;
+                $newUserId = $conn -> insert_id;
 
                 setcookie("login", $login, time() + 43200, "/");
                 setcookie("ID", $newUserId, time() + 43200, "/");
+                setcookie("email", $email, time() + 43200, "/");
 
                 echo 'Zarejestrowano pomyślnie!!!';
                 header("refresh:2;url=chat.php");
@@ -99,7 +98,7 @@
                 </label>
                 <input type="password" id="pass1" placeholder="Podaj Hasło..." minlength="12" required name="pass1Reg" class="pass">
                 <span class="material-symbols-outlined visPass">
-                    visibility_off
+                    visibility
                 </span>
             </p>
             <p>
@@ -108,7 +107,7 @@
                 </label>
                 <input type="password" id="pass2" placeholder="Powtórz Hasło..." minlength="12" required name="pass2Reg" class="pass">
                 <span class="material-symbols-outlined visPass">
-                    visibility_off
+                    visibility
                 </span> 
             </p>
             <p>
