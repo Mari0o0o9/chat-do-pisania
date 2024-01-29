@@ -192,15 +192,18 @@
         <section id="chat">
             <?= chat()?>
         </section>
-        <footer>
-            <input type="text" name="textSend" id="text" placeholder="Napisz wiadomość...">
-            <button id="send" name="send" class="material-symbols-outlined">
-                send
-            </button>
-        </footer>
+        <form>
+            <footer>
+                <input type="text" name="textSend" id="text" placeholder="Napisz wiadomość...">
+                <button id="send" name="send" class="material-symbols-outlined">
+                    send
+                </button>
+            </footer>
+        </form>  
     </main>
 </body>
 <script src="../JavaScript/chat.js"></script>
+<script src="../JavaScript/chatSend.js"></script>
 </html>
 <?php
     $conn -> close(); 

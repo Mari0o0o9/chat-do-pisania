@@ -42,8 +42,6 @@
             $sql = "INSERT INTO users (login, email, password) 
                     VALUES ('$login', '$email', '$hashed_password')";
 
-            $conn -> query($sql);
-
             if ($conn -> query($sql) === TRUE) {
                 $newUserId = $conn -> insert_id;
 
