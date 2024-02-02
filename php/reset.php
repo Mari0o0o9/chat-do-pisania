@@ -13,8 +13,7 @@ if ($conn -> connect_error) {
     die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
 }
 
-function changePassword()
-{
+function sendEmail() {
     global $conn;
 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -84,7 +83,7 @@ function changePassword()
                 <input type="submit" value="Zmień Hasło">
             </p>
         </form>
-        <p class="wynik"><?=changePassword();?></p>
+        <p class="wynik"><?=sendEmail();?></p>
     </div>
 </body>
 <script src="../JavaScript/password.js"></script>
