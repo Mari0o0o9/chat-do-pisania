@@ -1,58 +1,58 @@
 <?php
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
 
-require __DIR__ . '/../phpMailer-master/src/PHPMailer.php';
-require __DIR__ . '/../phpMailer-master/src/Exception.php';
-require __DIR__ . '/../phpMailer-master/src/SMTP.php';
+    require __DIR__ . '/../phpMailer-master/src/PHPMailer.php';
+    require __DIR__ . '/../phpMailer-master/src/Exception.php';
+    require __DIR__ . '/../phpMailer-master/src/SMTP.php';
 
-session_start();
-$conn = new mysqli("localhost", "root", "", "mydb");
+    session_start();
+    $conn = new mysqli("localhost", "root", "", "mydb");
 
-if ($conn -> connect_error) {
-    die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
-}
+    if ($conn -> connect_error) {
+        die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
+    }
 
-function sendEmail() {
-    global $conn;
+    function sendEmail() {
+        global $conn;
 
-    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-        return null;
-    } 
-    else {
-        $email = $_POST['email'];
-
-        $sql = "SELECT * FROM users WHERE email = '$email'";
-        $result = $conn -> query($sql);
-
-        if ($result -> num_rows == 0) {
-            return "Nieprawidłowy Email!!!";
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            return null;
         } 
         else {
-            $mail = new PHPMailer(true);
-            try {
-                $mail -> SMTPDebug = 0; 
-                $mail -> isSMTP();
-                $mail -> Host = "localhost"; 
-                $mail -> Port = 25; 
+            $email = $_POST['email'];
 
-                $mail -> setFrom("noreply@example.com", "Example");
-                $mail -> addAddress($email);
+            $sql = "SELECT * FROM users WHERE email = '$email'";
+            $result = $conn -> query($sql);
 
-                $mail -> isHTML(true);
-                $mail -> Subject = "Zmiana hasła!!!";
-                $mail -> Body = "Link do zmiany hasła: http://localhost/chat/php/changePassword.php";
-
-                $mail -> send();
-
-                return "Email został wysłany pomyślnie!!!";
+            if ($result -> num_rows == 0) {
+                return "Nieprawidłowy Email!!!";
             } 
-            catch (Exception $e) {
-                return "Wystąpił problem podczas wysyłania e-maila: " . $mail -> ErrorInfo;
+            else {
+                $mail = new PHPMailer(true);
+                try {
+                    $mail -> SMTPDebug = 0; 
+                    $mail -> isSMTP();
+                    $mail -> Host = "localhost"; 
+                    $mail -> Port = 25; 
+
+                    $mail -> setFrom("noreply@example.com", "Example");
+                    $mail -> addAddress($email);
+
+                    $mail -> isHTML(true);
+                    $mail -> Subject = "Zmiana hasła!!!";
+                    $mail -> Body = "Link do zmiany hasła: http://localhost/chat/php/changePassword.php";
+
+                    $mail -> send();
+
+                    return "Email został wysłany pomyślnie!!!";
+                } 
+                catch (Exception $e) {
+                    return "Wystąpił problem podczas wysyłania e-maila: " . $mail -> ErrorInfo;
+                }
             }
         }
     }
-}
 ?>
 <!DOCTYPE html>
 <html lang="pl">
