@@ -23,9 +23,9 @@ function sendEmail() {
         $email = $_POST['email'];
 
         $sql = "SELECT * FROM users WHERE email = '$email'";
-        $result = $conn->query($sql);
+        $result = $conn -> query($sql);
 
-        if ($result->num_rows == 0) {
+        if ($result -> num_rows == 0) {
             return "Nieprawidłowy Email!!!";
         } 
         else {
