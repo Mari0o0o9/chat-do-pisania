@@ -1,44 +1,59 @@
-<?php 
-    session_start();
-    $conn = new mysqli("localhost", "root", "", "mydb");
-    if ($conn -> connect_error) {
-        die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
-    }
+<?php
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-    function changePassword() {
-        global $conn;
-        
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            return null;
-        }
+require __DIR__ . '/../phpMailer-master/src/PHPMailer.php';
+require __DIR__ . '/../phpMailer-master/src/Exception.php';
+require __DIR__ . '/../phpMailer-master/src/SMTP.php';
+
+session_start();
+$conn = new mysqli("localhost", "root", "", "mydb");
+
+if ($conn -> connect_error) {
+    die("Błąd połączenia z bazą danych: " . $conn -> connect_error);
+}
+
+function changePassword()
+{
+    global $conn;
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        return null;
+    } 
+    else {
+        $email = $_POST['email'];
+
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows == 0) {
+            return "Nieprawidłowy Email!!!";
+        } 
         else {
-            $email = $_POST['email'];
-            $pass1 = $_POST['pass1'];
-            $pass2 = $_POST['pass2'];
+            $mail = new PHPMailer(true);
+            try {
+                $mail -> SMTPDebug = 0; 
+                $mail -> isSMTP();
+                $mail -> Host = "localhost"; 
+                $mail -> Port = 25; 
 
-            $sql = "SELECT * 
-                    FROM users
-                    WHERE email = '$email'";
-            $result = $conn -> query($sql);
+                $mail -> setFrom("noreply@example.com", "Example");
+                $mail -> addAddress($email);
 
-            if ($result -> num_rows == 0) {
-                echo "Nie prawidłowy Email!!!";
-            }
-            elseif ($pass1 !== $pass2) {
-                echo "Hasła nie są takie same!!!";
-            }
-            else {
-                $hashed_password = password_hash($pass1, PASSWORD_DEFAULT);
-                $sql = "UPDATE users 
-                        SET password = '$hashed_password' 
-                        WHERE email = '$email'";
-                $conn -> query($sql);
+                $mail -> isHTML(true);
+                $mail -> Subject = "Zmiana hasła!!!";
+                $mail -> Body = "Link do zmiany hasła: http://localhost/chat/php/changePassword.php";
 
-                echo "Zmieniono Hasło pomyślnie!!!";
-                header("refresh:2;url=login.php");
+                $mail -> send();
+
+                return "Email został wysłany pomyślnie!!!";
+            } 
+            catch (Exception $e) {
+                return "Wystąpił problem podczas wysyłania e-maila: " . $mail -> ErrorInfo;
             }
         }
     }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -64,24 +79,6 @@
                     face
                 </label>
                 <input type="text" id="loginName" placeholder="Podaj Email..." required name="email">
-            </p>
-            <p>
-                <label for="pass1" class="material-symbols-outlined passVis">
-                    password
-                </label>
-                <input type="password" id="pass1" placeholder="Podaj Hasło..." minlength="12" required name="pass1" class="pass">
-                <span class="material-symbols-outlined visPass">
-                    visibility
-                </span>
-            </p>
-            <p>
-                <label for="pass2" class="material-symbols-outlined passVis">
-                    password
-                </label>
-                <input type="password" id="pass2" placeholder="Powtórz Hasło..." minlength="12" required name="pass2" class="pass">
-                <span class="material-symbols-outlined visPass">
-                    visibility
-                </span>
             </p>
             <p>
                 <input type="submit" value="Zmień Hasło">

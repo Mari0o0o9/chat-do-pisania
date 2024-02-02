@@ -203,7 +203,6 @@
     </main>
 </body>
 <script src="../JavaScript/chat.js"></script>
-<script src="../JavaScript/chatSend.js"></script>
 </html>
 <?php
     $conn -> close(); 
